@@ -19,7 +19,7 @@
                             <span class="input-group-text" id="basic-addon1">
                                 <i class="fa fa-key"></i>
                             </span>
-                            <input type="number" class="form-control" v-model="form.nisn" placeholder="Nisn">
+                            <input type="text" class="form-control" v-model="form.nisn" placeholder="Nisn">
                         </div>
                         <div v-if="errors.nisn" class="alert alert-danger mt-2">
                             {{ errors.nisn }}
