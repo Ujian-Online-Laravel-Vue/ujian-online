@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('lesson_id')->references('id')->on('lessons')->cascadeOnDelete();
             $table->foreignId('classroom_id')->references('id')->on('classrooms')->cascadeOnDelete();
             $table->integer('duration');
-            $table->text('description');
+            $table->mediumText('description');
             $table->enum('random_question', ['Y', 'N'])->default('Y');
             $table->enum('random_answer', ['Y', 'N'])->default('Y');
             $table->enum('show_answer', ['Y', 'N'])->default('N');

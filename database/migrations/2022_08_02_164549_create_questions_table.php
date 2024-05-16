@@ -16,13 +16,13 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exam_id')->references('id')->on('exams')->cascadeOnDelete();
-            $table->text('question');
-            $table->text('option_1')->nullable();
-            $table->text('option_2')->nullable();
-            $table->text('option_3')->nullable();
-            $table->text('option_4')->nullable();
-            $table->text('option_5')->nullable();
-            $table->integer('answer');  
+            $table->mediumText('question');
+            $table->mediumText('option_1')->nullable();
+            $table->mediumText('option_2')->nullable();
+            $table->mediumText('option_3')->nullable();
+            $table->mediumText('option_4')->nullable();
+            $table->mediumText('option_5')->nullable();
+            $table->integer('answer');
             $table->timestamps();
         });
     }
