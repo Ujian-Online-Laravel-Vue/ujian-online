@@ -18,90 +18,37 @@
                                         <tr>
                                             <td style="width:20%" class="fw-bold">Soal</td>
                                             <td>
-                                                <Editor 
-                                                    api-key="no-api-key" 
-                                                    v-model="form.question" 
-                                                    :init="{
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
+                                                <TextEditor v-model="form.question"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width:20%" class="fw-bold">Pilihan A</td>
                                             <td>
-                                                <Editor 
-                                                    api-key="no-api-key" 
-                                                    v-model="form.option_1" 
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
+                                                <TextEditor v-model="form.option_1"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width:20%" class="fw-bold">Pilihan B</td>
                                             <td>
-                                                <Editor 
-                                                    api-key="no-api-key" 
-                                                    v-model="form.option_2" 
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
+                                                <TextEditor v-model="form.option_2"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width:20%" class="fw-bold">Pilihan C</td>
                                             <td>
-                                                <Editor 
-                                                    api-key="no-api-key" 
-                                                    v-model="form.option_3" 
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
+                                                <TextEditor v-model="form.option_3"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width:20%" class="fw-bold">Pilihan D</td>
                                             <td>
-                                                <Editor 
-                                                    api-key="no-api-key" 
-                                                    v-model="form.option_4" 
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
+                                                <TextEditor v-model="form.option_4"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="width:20%" class="fw-bold">Pilihan E</td>
                                             <td>
-                                                <Editor 
-                                                    api-key="no-api-key" 
-                                                    v-model="form.option_5" 
-                                                    :init="{
-                                                        height: 130,
-                                                        menubar: false,
-                                                        plugins: 'lists link image emoticons',
-                                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                                    }"
-                                                />
+                                                <TextEditor v-model="form.option_5"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -119,7 +66,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                             <button type="submit" class="btn btn-md btn-primary border-0 shadow me-2">Simpan</button>
                             <button type="reset" class="btn btn-md btn-warning border-0 shadow">Reset</button>
                         </form>
@@ -149,8 +96,8 @@
     //import sweet alert2
     import Swal from 'sweetalert2';
 
-    //import tinyMCE
-    import Editor from '@tinymce/tinymce-vue';
+    //import text editor
+    import TextEditor from '../../../Components/TextEditor.vue';
 
     export default {
 
@@ -161,7 +108,7 @@
         components: {
             Head,
             Link,
-            Editor,
+            TextEditor,
         },
 
         //props

@@ -13,7 +13,7 @@
                         <form @submit.prevent="submit">
 
                             <div class="mb-4">
-                                <label>Nama Ujian</label> 
+                                <label>Nama Ujian</label>
                                 <input type="text" class="form-control" placeholder="Masukkan Nama Ujian" v-model="form.title">
                                 <div v-if="errors.title" class="alert alert-danger mt-2">
                                     {{ errors.title }}
@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Mata Pelajaran</label> 
+                                        <label>Mata Pelajaran</label>
                                         <select class="form-select" v-model="form.lesson_id">
                                             <option v-for="(lesson, index) in lessons" :key="index" :value="lesson.id">{{ lesson.title }}</option>
                                         </select>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Kelas</label> 
+                                        <label>Kelas</label>
                                         <select class="form-select" v-model="form.classroom_id">
                                             <option v-for="(classroom, index) in classrooms" :key="index" :value="classroom.id">{{ classroom.title }}</option>
                                         </select>
@@ -47,16 +47,8 @@
 
 
                             <div class="mb-4">
-                                <label>Deskripsi</label> 
-                                <Editor 
-                                    api-key="no-api-key" 
-                                    v-model="form.description" 
-                                    :init="{
-                                        menubar: false,
-                                        plugins: 'lists link image emoticons',
-                                        toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link image emoticons'
-                                    }"
-                                />
+                                <label>Deskripsi</label>
+                                <TextEditor v-model="form.description"/>
                                 <div v-if="errors.description" class="alert alert-danger mt-2">
                                     {{ errors.description }}
                                 </div>
@@ -65,7 +57,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Acak Soal</label> 
+                                        <label>Acak Soal</label>
                                         <select class="form-select" v-model="form.random_question">
                                             <option value="Y">Y</option>
                                             <option value="N">N</option>
@@ -77,7 +69,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Acak Jawaban</label> 
+                                        <label>Acak Jawaban</label>
                                         <select class="form-select" v-model="form.random_answer">
                                             <option value="Y">Y</option>
                                             <option value="N">N</option>
@@ -92,7 +84,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Tampilkan Hasil</label> 
+                                        <label>Tampilkan Hasil</label>
                                         <select class="form-select" v-model="form.show_answer">
                                             <option value="Y">Y</option>
                                             <option value="N">N</option>
@@ -104,7 +96,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-4">
-                                        <label>Durasi (Menit)</label> 
+                                        <label>Durasi (Menit)</label>
                                         <input type="number" min="1" class="form-control" placeholder="Masukkan Durasi Ujian (Menit)" v-model="form.duration">
                                         <div v-if="errors.duration" class="alert alert-danger mt-2">
                                             {{ errors.duration }}
@@ -142,8 +134,8 @@
     //import sweet alert2
     import Swal from 'sweetalert2';
 
-    //import tinyMCE
-    import Editor from '@tinymce/tinymce-vue';
+    //import text editor
+    import TextEditor from '../../../Components/TextEditor.vue';
 
     export default {
 
@@ -154,7 +146,7 @@
         components: {
             Head,
             Link,
-            Editor
+            TextEditor
         },
 
         //props
