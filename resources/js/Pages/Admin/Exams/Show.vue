@@ -20,6 +20,10 @@
                                         <td>{{ exam.title }}</td>
                                     </tr>
                                     <tr>
+                                        <td class="fw-bold">Sekolah</td>
+                                        <td>{{ exam.school.title }}</td>
+                                    </tr>
+                                    <tr>
                                         <td class="fw-bold">Mata Pelajaran</td>
                                         <td>{{ exam.lesson.title }}</td>
                                     </tr>

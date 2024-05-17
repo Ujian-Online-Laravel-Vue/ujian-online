@@ -35,6 +35,7 @@
                                     <tr class="border-0">
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
                                         <th class="border-0">Ujian</th>
+                                        <th class="border-0">Sekolah</th>
                                         <th class="border-0">Pelajaran</th>
                                         <th class="border-0">Kelas</th>
                                         <th class="border-0">Jumlah Soal</th>
@@ -46,6 +47,7 @@
                                     <tr v-for="(exam, index) in exams.data" :key="index">
                                         <td class="fw-bold text-center">{{ ++index + (exams.current_page - 1) * exams.per_page }}</td>
                                         <td>{{ exam.title }}</td>
+                                        <td>{{ exam.school.title }}</td>
                                         <td>{{ exam.lesson.title }}</td>
                                         <td class="text-center">{{ exam.classroom.title }}</td>
                                         <td class="text-center">{{ exam.questions.length }}</td>

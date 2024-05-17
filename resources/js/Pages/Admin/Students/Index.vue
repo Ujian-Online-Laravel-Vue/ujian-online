@@ -45,6 +45,7 @@
                                         <th class="border-0 rounded-start" style="width:5%">No.</th>
                                         <th class="border-0">Nisn</th>
                                         <th class="border-0">Nama</th>
+                                        <th class="border-0">Sekolah</th>
                                         <th class="border-0">Kelas</th>
                                         <th class="border-0">Jenis Kelamin</th>
                                         <th class="border-0">Password</th>
@@ -58,6 +59,7 @@
                                             {{ ++index + (students.current_page - 1) * students.per_page }}</td>
                                         <td>{{ student.nisn }}</td>
                                         <td>{{ student.name }}</td>
+                                        <td class="text-center">{{ student.school.title }}</td>
                                         <td class="text-center">{{ student.classroom.title }}</td>
                                         <td class="text-center">{{ student.gender }}</td>
                                         <td>{{ student.password }}</td>

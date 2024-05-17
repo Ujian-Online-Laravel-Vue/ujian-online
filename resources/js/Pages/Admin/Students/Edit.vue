@@ -36,6 +36,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-4">
+                                        <label>Sekolah</label> 
+                                        <select class="form-select" v-model="form.school_id">
+                                            <option v-for="(school, index) in schools" :key="index" :value="school.id">{{ school.title }}</option>
+                                        </select>
+                                        <div v-if="errors.school_id" class="alert alert-danger mt-2">
+                                            {{ errors.school_id }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
                                         <label>Kelas</label> 
                                         <select class="form-select" v-model="form.classroom_id">
                                             <option v-for="(classroom, index) in classrooms" :key="index" :value="classroom.id">{{ classroom.title }}</option>
@@ -121,6 +132,7 @@
         //props
         props: {
             errors: Object,
+            schools: Array,
             classrooms: Array,
             student: Object
         },
@@ -132,6 +144,7 @@
             const form = reactive({
                 nisn: props.student.nisn,
                 name: props.student.name,
+                school_id: props.student.school_id,
                 classroom_id: props.student.classroom_id,
                 gender: props.student.gender,
                 password: '',
@@ -146,6 +159,7 @@
                     //data
                     nisn: form.nisn,
                     name: form.name,
+                    school_id: form.school_id,
                     classroom_id: form.classroom_id,
                     gender: form.gender,
                     password: form.password,

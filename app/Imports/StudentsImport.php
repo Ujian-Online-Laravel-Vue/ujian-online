@@ -21,6 +21,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation
             'name'          => $row['name'],
             'password'      => $row['password'],
             'gender'        => $row['gender'],
+            'school_id'  => (int) $row['school_id'],
             'classroom_id'  => (int) $row['classroom_id'],
         ]);
     }
