@@ -12,11 +12,26 @@
                         <hr>
                         <form @submit.prevent="submit">
 
-                            <div class="mb-4">
-                                <label>Nama Ujian</label>
-                                <input type="text" class="form-control" placeholder="Masukkan Nama Ujian" v-model="form.title">
-                                <div v-if="errors.title" class="alert alert-danger mt-2">
-                                    {{ errors.title }}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Nama Ujian</label>
+                                        <input type="text" class="form-control" placeholder="Masukkan Nama Ujian" v-model="form.title">
+                                        <div v-if="errors.title" class="alert alert-danger mt-2">
+                                            {{ errors.title }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <label>Sekolah</label>
+                                        <select class="form-select" v-model="form.school_id">
+                                            <option v-for="(school, index) in schools" :key="index" :value="school.id">{{ school.title }}</option>
+                                        </select>
+                                        <div v-if="errors.school_id" class="alert alert-danger mt-2">
+                                            {{ errors.school_id }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -153,6 +168,7 @@
         props: {
             errors: Object,
             exam: Object,
+            schools: Array,
             lessons: Array,
             classrooms: Array,
         },
@@ -163,6 +179,7 @@
             //define form with reactive
             const form = reactive({
                 title: props.exam.title,
+                school_id: props.exam.school_id,
                 lesson_id: props.exam.lesson_id,
                 classroom_id: props.exam.classroom_id,
                 duration: props.exam.duration,
@@ -179,6 +196,7 @@
                 Inertia.put(`/admin/exams/${props.exam.id}`, {
                     //data
                     title: form.title,
+                    school_id: form.school_id,
                     lesson_id: form.lesson_id,
                     classroom_id: form.classroom_id,
                     duration: form.duration,

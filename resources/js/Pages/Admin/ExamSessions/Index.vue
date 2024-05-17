@@ -50,6 +50,7 @@
                                         <td>
                                             <strong class="fw-bold">{{ exam_session.exam.title }}</strong>
                                             <ul class="mt-2">
+                                                <li>Sekolah : <strong class="fw-bold">{{ exam_session.exam.school.title }}</strong></li>
                                                 <li>Kelas : <strong class="fw-bold">{{ exam_session.exam.classroom.title }}</strong></li>
                                                 <li>Pelajaran : <strong class="fw-bold">{{ exam_session.exam.lesson.title }}</strong></li>
                                             </ul>

@@ -8,6 +8,7 @@ use App\Models\Classroom;
 use App\Models\ExamSession;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\School;
 
 class DashboardController extends Controller
 {
@@ -19,6 +20,9 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request)
     {
+        //count schools
+        $schools = School::count();
+
         //count students
         $students = Student::count();
 
@@ -32,6 +36,7 @@ class DashboardController extends Controller
         $classrooms = Classroom::count();
 
         return inertia('Admin/Dashboard/Index', [
+            'schools'      => $schools,
             'students'      => $students,
             'exams'         => $exams,
             'exam_sessions' => $exam_sessions,

@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Imports\StudentsImport;
 use App\Http\Controllers\Controller;
+use App\Models\School;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
@@ -21,7 +22,7 @@ class StudentController extends Controller
         //get students
         $students = Student::when(request()->q, function($students) {
             $students = $students->where('name', 'like', '%'. request()->q . '%');
-        })->with('classroom')->latest()->paginate(5);
+        })->with('classroom', 'school')->latest()->paginate(5);
 
         //append query string to pagination links
         $students->appends(['q' => request()->q]);
@@ -39,11 +40,15 @@ class StudentController extends Controller
      */
     public function create()
     {
+        //get schools
+        $schools = School::all();
+
         //get classrooms
         $classrooms = Classroom::all();
 
         //render with inertia
         return inertia('Admin/Students/Create', [
+            'schools' => $schools,
             'classrooms' => $classrooms,
         ]);
     }
@@ -62,6 +67,7 @@ class StudentController extends Controller
             'nisn'          => 'required|unique:students',
             'gender'        => 'required|string',
             'password'      => 'required|confirmed',
+            'school_id'  => 'required',
             'classroom_id'  => 'required'
         ]);
 
@@ -71,6 +77,7 @@ class StudentController extends Controller
             'nisn'          => $request->nisn,
             'gender'        => $request->gender,
             'password'      => $request->password,
+            'school_id'  => $request->school_id,
             'classroom_id'  => $request->classroom_id
         ]);
 
@@ -89,12 +96,16 @@ class StudentController extends Controller
         //get student
         $student = Student::findOrFail($id);
 
+        //get schools
+        $schools = School::all();
+
         //get classrooms
         $classrooms = Classroom::all();
 
         //render with inertia
         return inertia('Admin/Students/Edit', [
             'student' => $student,
+            'schools' => $schools,
             'classrooms' => $classrooms,
         ]);
     }
@@ -113,6 +124,7 @@ class StudentController extends Controller
             'name'          => 'required|string|max:255',
             'nisn'          => 'required|unique:students,nisn,'.$student->id,
             'gender'        => 'required|string',
+            'school_id'  => 'required',
             'classroom_id'  => 'required',
             'password'      => 'confirmed'
         ]);
@@ -125,6 +137,7 @@ class StudentController extends Controller
                 'name'          => $request->name,
                 'nisn'          => $request->nisn,
                 'gender'        => $request->gender,
+                'school_id'  => $request->school_id,
                 'classroom_id'  => $request->classroom_id
             ]);
 
@@ -136,6 +149,7 @@ class StudentController extends Controller
                 'nisn'          => $request->nisn,
                 'gender'        => $request->gender,
                 'password'      => $request->password,
+                'school_id'  => $request->school_id,
                 'classroom_id'  => $request->classroom_id
             ]);
 

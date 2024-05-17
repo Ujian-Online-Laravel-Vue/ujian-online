@@ -11,6 +11,34 @@
                         <div class="row d-block d-xl-flex align-items-center">
                             <div
                                 class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                                <div class="icon-shape icon-shape-warning rounded me-4 me-sm-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-building icon icon-md" viewBox="0 0 16 16">
+                                        <path d="M4 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+                                        <path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1zm11 0H3v14h3v-2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V15h3z"/>
+                                    </svg>
+                                </div>
+                                <div class="d-sm-none">
+                                    <h2 class="h5">Sekolah</h2>
+                                    <h3 class="fw-extrabold mb-1">{{ schools }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-12 col-xl-7 px-xl-0">
+                                <div class="d-none d-sm-block">
+                                    <h2 class="h5">Sekolah</h2>
+                                    <h3 class="fw-extrabold mb-1">{{ schools }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-xl-3 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="row d-block d-xl-flex align-items-center">
+                            <div
+                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
                                 <div class="icon-shape icon-shape-info rounded me-4 me-sm-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-back icon icon-md" viewBox="0 0 16 16">
                                         <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z"/>
@@ -142,6 +170,7 @@
 
         //props
         props: {
+            schools: Number,
             students: Number,
             exams: Number,
             exam_sessions: Number,

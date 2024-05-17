@@ -9,6 +9,7 @@ use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Imports\QuestionsImport;
 use App\Http\Controllers\Controller;
+use App\Models\School;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExamController extends Controller
@@ -23,7 +24,7 @@ class ExamController extends Controller
         //get exams
         $exams = Exam::when(request()->q, function($exams) {
             $exams = $exams->where('title', 'like', '%'. request()->q . '%');
-        })->with('lesson', 'classroom', 'questions')->latest()->paginate(5);
+        })->with('school', 'lesson', 'classroom', 'questions')->latest()->paginate(5);
 
         //append query string to pagination links
         $exams->appends(['q' => request()->q]);
@@ -44,12 +45,16 @@ class ExamController extends Controller
         //get lessons
         $lessons = Lesson::all();
 
+        //get schools
+        $schools = School::all();
+
         //get classrooms
         $classrooms = Classroom::all();
         
         //render with inertia
         return inertia('Admin/Exams/Create', [
             'lessons' => $lessons,
+            'schools' => $schools,
             'classrooms' => $classrooms,
         ]);
     }
@@ -65,6 +70,7 @@ class ExamController extends Controller
         //validate request
         $request->validate([
             'title'             => 'required',
+            'school_id'         => 'required|integer',
             'lesson_id'         => 'required|integer',
             'classroom_id'      => 'required|integer',
             'duration'          => 'required|integer',
@@ -77,6 +83,7 @@ class ExamController extends Controller
         //create exam
         Exam::create([
             'title'             => $request->title,
+            'school_id'         => $request->school_id,
             'lesson_id'         => $request->lesson_id,
             'classroom_id'      => $request->classroom_id,
             'duration'          => $request->duration,
@@ -100,7 +107,7 @@ class ExamController extends Controller
     public function show($id)
     {
         //get exam
-        $exam = Exam::with('lesson', 'classroom')->findOrFail($id);
+        $exam = Exam::with('school', 'lesson', 'classroom')->findOrFail($id);
 
         //get relation questions with pagination
         $exam->setRelation('questions', $exam->questions()->paginate(5));
@@ -122,6 +129,9 @@ class ExamController extends Controller
         //get exam
         $exam = Exam::findOrFail($id);
 
+        //get schools
+        $schools = School::all();
+
         //get lessons
         $lessons = Lesson::all();
 
@@ -131,6 +141,7 @@ class ExamController extends Controller
         //render with inertia
         return inertia('Admin/Exams/Edit', [
             'exam' => $exam,
+            'schools' => $schools,
             'lessons' => $lessons,
             'classrooms' => $classrooms,
         ]);
@@ -148,6 +159,7 @@ class ExamController extends Controller
         //validate request
         $request->validate([
             'title'             => 'required',
+            'school_id'         => 'required|integer',
             'lesson_id'         => 'required|integer',
             'classroom_id'      => 'required|integer',
             'duration'          => 'required|integer',
@@ -160,6 +172,7 @@ class ExamController extends Controller
         //update exam
         $exam->update([
             'title'             => $request->title,
+            'school_id'         => $request->school_id,
             'lesson_id'         => $request->lesson_id,
             'classroom_id'      => $request->classroom_id,
             'duration'          => $request->duration,

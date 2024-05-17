@@ -16,6 +16,7 @@ class Exam extends Model
      */
     protected $fillable = [
         'title',
+        'school_id',
         'lesson_id',
         'classroom_id',
         'duration',
@@ -24,6 +25,16 @@ class Exam extends Model
         'random_answer',
         'show_answer',
     ];
+
+    /**
+     * school
+     *
+     * @return void
+     */
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
 
     /**
      * lesson

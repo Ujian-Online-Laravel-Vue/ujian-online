@@ -15,6 +15,7 @@ class Student extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'school_id',
         'classroom_id',
         'nisn',
         'name',
@@ -30,6 +31,16 @@ class Student extends Authenticatable
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);
+    }
+
+    /**
+     * school
+     *
+     * @return void
+     */
+    public function school()
+    {
+        return $this->belongsTo(School::class);
     }
 
     /**
