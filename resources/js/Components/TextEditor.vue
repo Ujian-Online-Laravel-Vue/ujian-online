@@ -1,60 +1,3 @@
-<script setup>
-import { useEditor, EditorContent } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import TextAlign from '@tiptap/extension-text-align'
-import Image from '@tiptap/extension-image'
-import 'bootstrap-icons/font/bootstrap-icons.css'
-
-const props = defineProps({
-  modelValue: String,
-})
-
-const emit = defineEmits(['update:modelValue'])
-
-const editor = useEditor({
-  content: props.modelValue,
-  onUpdate: ({ editor }) => {
-    emit('update:modelValue', editor.getHTML())
-  },
-  extensions: [
-        StarterKit,
-        Underline,
-        Image.configure({
-            inline: true,
-            allowBase64: true,
-        }),
-        TextAlign.configure({
-          types: ['heading', 'paragraph'],
-        }),
-    ],
-  editorProps: {
-    attributes: {
-      class:
-        'border border-gray-400 p-3 min-vh-25 max-vh-25 overflow-auto outline-none w-100 text-wrap',
-    },
-  },
-})
-
-const uploadImage = () => {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'image/*';
-  input.onchange = () => {
-    const file = input.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        editor.value.chain().focus().setImage({ src: reader.result }).run();
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-  input.click();
-}
-
-</script>
-
 <template>
   <div class="container">
     <section v-if="editor" class="buttons border border-gray-400 d-flex justify-content-center align-items-center gap-2 border-top p-1 overflow-auto ">
@@ -116,6 +59,64 @@ const uploadImage = () => {
     <EditorContent :editor="editor" class="tiptap" />
   </div>
 </template>
+
+<script setup>
+import { useEditor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import TextAlign from '@tiptap/extension-text-align'
+import Image from '@tiptap/extension-image'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import { ref } from 'vue'
+
+const props = defineProps({
+  modelValue: String,
+})
+
+const emit = defineEmits(['update:modelValue'])
+
+const editor = ref(useEditor({
+  content: props.modelValue,
+  onUpdate: ({ editor }) => {
+    emit('update:modelValue', editor.getHTML())
+  },
+  extensions: [
+        StarterKit,
+        Underline,
+        Image.configure({
+            inline: true,
+            allowBase64: true,
+        }),
+        TextAlign.configure({
+          types: ['heading', 'paragraph'],
+        }),
+    ],
+  editorProps: {
+    attributes: {
+      class:
+        'border border-gray-400 p-3 min-vh-25 max-vh-25 overflow-auto outline-none w-100 text-wrap',
+    },
+  },
+}))
+
+const uploadImage = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = () => {
+    const file = input.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        editor.value.chain().focus().setImage({ src: reader.result }).run();
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  input.click();
+}
+
+</script>
 
 <style scoped>
 /* Responsive adjustments */
