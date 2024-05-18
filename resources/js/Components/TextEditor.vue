@@ -5,6 +5,7 @@ import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image'
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import { ref } from 'vue'
 
 const props = defineProps({
   modelValue: String,
@@ -12,7 +13,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-const editor = useEditor({
+const editor = ref(useEditor({
   content: props.modelValue,
   onUpdate: ({ editor }) => {
     emit('update:modelValue', editor.getHTML())
@@ -34,7 +35,7 @@ const editor = useEditor({
         'border border-gray-400 p-3 min-vh-25 max-vh-25 overflow-auto outline-none w-100 text-wrap',
     },
   },
-})
+}))
 
 const uploadImage = () => {
   const input = document.createElement('input');
