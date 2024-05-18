@@ -11,10 +11,6 @@
             "dest": "public/assets/"
         },
         {
-            "src": "/build/(.*)",
-            "dest": "public/build/"
-        },
-        {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
