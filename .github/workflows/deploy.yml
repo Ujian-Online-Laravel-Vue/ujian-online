@@ -26,7 +26,7 @@ jobs:
             git checkout -- .
             git reset --hard HEAD
             # Switch branch
-            git pull origin main
+            git pull second main
             composer install
             # Enable if needed
             #php artisan optimize:clear
