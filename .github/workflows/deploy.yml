@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy Using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            # Export path
+            # PATH=$PATH:/${{vars.SSH_USERNAME}}/.nvm/versions/node/v16.17.1/bin/
+            cd /var/www/ujian-online
+            # Reset changes
+            git checkout -- .
+            git reset --hard HEAD
+            # Switch branch
+            git pull origin main
+            composer install
+            # Enable if needed
+            #php artisan optimize:clear
+            # Force migration for production mode
+            #php artisan migrate --force
+            # Install and build frontend
+            npm install
+            npm run build
