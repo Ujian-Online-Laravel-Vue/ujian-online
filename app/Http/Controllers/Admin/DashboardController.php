@@ -9,6 +9,7 @@ use App\Models\ExamSession;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\School;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -35,12 +36,18 @@ class DashboardController extends Controller
         //count classrooms
         $classrooms = Classroom::count();
 
+        //count pengawas
+        $pengawas = User::with('roles')->get()->filter(
+            fn ($user) => $user->roles->where('name', 'pengawas')->toArray()
+        )->count();
+
         return inertia('Admin/Dashboard/Index', [
             'schools'      => $schools,
             'students'      => $students,
             'exams'         => $exams,
             'exam_sessions' => $exam_sessions,
             'classrooms'    => $classrooms,
+            'pengawas'    => $pengawas,
         ]);
     }
 }

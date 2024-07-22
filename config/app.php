@@ -187,6 +187,7 @@ return [
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -214,7 +215,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
 
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        
+
     ])->toArray(),
 
 ];
