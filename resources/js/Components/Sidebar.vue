@@ -40,7 +40,7 @@
 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/dashboard') }">
+                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/dashboard') }">
                     <Link href="/admin/dashboard" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
@@ -57,7 +57,7 @@
                     </Link>
                 </li>
 
-                <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
+                <li v-if="$page.props.auth.roles['admin']" role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
 
                 <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/schools') }">
                     <Link href="/admin/schools" class="nav-link d-flex justify-content-between">
@@ -90,7 +90,7 @@
                     </Link>
                 </li>
 
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/classrooms') }">
+                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/classrooms') }">
                     <Link href="/admin/classrooms" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
@@ -105,7 +105,7 @@
                     </Link>
                 </li>
 
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/students') }">
+                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/students') }">
                     <Link href="/admin/students" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
@@ -122,9 +122,9 @@
                     </Link>
                 </li>
 
-                <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
+                <li v-if="$page.props.auth.roles['admin']" role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
 
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/exams') }">
+                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/exams') }">
                     <Link href="/admin/exams" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
@@ -157,9 +157,9 @@
                     </Link>
                 </li>
 
-                <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
+                <li v-if="$page.props.auth.roles['admin']" role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
 
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reports') }">
+                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reports') }">
                     <Link href="/admin/reports" class="nav-link d-flex justify-content-between">
                     <span>
                         <span class="sidebar-icon">
