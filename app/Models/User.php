@@ -27,6 +27,26 @@ class User extends Authenticatable
     ];
 
     /**
+     * school
+     *
+     * @return void
+     */
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    /**
+     * school
+     *
+     * @return void
+     */
+    public function exam_sessions()
+    {
+        return $this->belongsTo(ExamSession::class);
+    }
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>

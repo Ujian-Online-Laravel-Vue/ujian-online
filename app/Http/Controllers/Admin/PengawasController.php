@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Classroom;
+use App\Http\Controllers\Controller;
 use App\Models\ExamSession;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class PengawasController extends Controller
@@ -23,13 +22,13 @@ class PengawasController extends Controller
         //get users with 'pengawas' role
         $users = User::role('pengawas')->when(request()->q, function($users) {
             $users = $users->where('name', 'like', '%'. request()->q . '%');
-        })->latest()->paginate(5);
+        })->with('school', 'exam_sessions')->latest()->paginate(5);
 
         //append query string to pagination links
         $users->appends(['q' => request()->q]);
 
         //render with inertia
-        return Inertia::render('Pengawas/Index', [
+        return Inertia::render('Admin/Pengawas/Index', [
             'users' => $users,
         ]);
     }
@@ -48,9 +47,9 @@ class PengawasController extends Controller
         $exam_sessions = ExamSession::all();
 
         //render with inertia
-        return Inertia::render('Pengawas/Create', [
+        return Inertia::render('Admin/Pengawas/Create', [
             'schools' => $schools,
-            'exam_session' => $exam_sessions
+            'exam_sessions' => $exam_sessions
         ]);
     }
 
@@ -84,7 +83,7 @@ class PengawasController extends Controller
         $user->assignRole('pengawas');
 
         //redirect
-        return redirect()->route('pengawas.index');
+        return redirect()->route('admin.pengawas.index');
     }
 
     /**
@@ -99,7 +98,7 @@ class PengawasController extends Controller
         $user = User::findOrFail($id);
 
         //render with inertia
-        return Inertia::render('Pengawas/Show', [
+        return Inertia::render('Admin/Pengawas/Show', [
             'user' => $user,
         ]);
     }
@@ -123,10 +122,10 @@ class PengawasController extends Controller
         $user = User::findOrFail($id);
 
         //render with inertia
-        return Inertia::render('Pengawas/Edit', [
+        return Inertia::render('Admin/Pengawas/Edit', [
             'user' => $user,
             'schools' => $schools,
-            'exam_session' => $exam_sessions
+            'exam_sessions' => $exam_sessions
         ]);
     }
 
@@ -161,7 +160,7 @@ class PengawasController extends Controller
         ]);
 
         //redirect
-        return redirect()->route('pengawas.index');
+        return redirect()->route('admin.pengawas.index');
     }
 
     /**
@@ -179,6 +178,6 @@ class PengawasController extends Controller
         $user->delete();
 
         //redirect
-        return redirect()->route('pengawas.index');
+        return redirect()->route('admin.pengawas.index');
     }
 }
