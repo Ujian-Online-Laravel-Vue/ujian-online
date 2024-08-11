@@ -21,7 +21,7 @@ class Student extends Authenticatable
         'name',
         'password',
         'gender'
-    ];  
+    ];
 
     /**
      * classroom
@@ -51,4 +51,8 @@ class Student extends Authenticatable
     protected $hidden = [
         //'password',
     ];
+
+    public function examSessions(){
+        return $this->hasMany(ExamSession::class,'exam_groups','student_id','exam_session_id');
+    }
 }
