@@ -66,8 +66,7 @@ class PengawasController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|confirmed',
-            'school_id' => 'nullable',
-            'exam_sessions_id' => 'nullable'
+            'school_id' => 'nullable'
         ]);
 
         //create user
@@ -75,8 +74,7 @@ class PengawasController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'school_id' => $request->school_id,
-            'exam_sessions_id' => $request->exam_sessions_id
+            'school_id' => $request->school_id
         ]);
 
         //assign 'pengawas' role
@@ -143,8 +141,7 @@ class PengawasController extends Controller
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users,email,' . $id,
             'password' => 'string|confirmed',
-            'school_id' => 'nullable',
-            'exam_sessions_id' => 'nullable'
+            'school_id' => 'nullable'
         ]);
 
         //get user by id
@@ -155,8 +152,7 @@ class PengawasController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $user->password,
-            'school_id' => $request->school_id,
-            'exam_sessions_id' => $request->exam_sessions_id
+            'school_id' => $request->school_id
         ]);
 
         //redirect

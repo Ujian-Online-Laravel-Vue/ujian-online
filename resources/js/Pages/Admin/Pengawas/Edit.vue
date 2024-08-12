@@ -80,7 +80,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="mb-4">
                                         <label>Sesi Ujian</label>
                                         <select
@@ -104,7 +104,7 @@
                                             {{ errors.exam_sessions_id }}
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
                             <div class="row">
@@ -200,7 +200,7 @@ export default {
             name: props.user.name,
             email: props.user.email,
             school_id: props.user.school_id,
-            exam_sessions_id: props.user.exam_sessions_id,
+            //exam_sessions_id: props.user.exam_sessions_id,
             password: "",
             password_confirmation: "",
         });
@@ -215,7 +215,7 @@ export default {
                     name: form.name,
                     email: form.email,
                     school_id: form.school_id,
-                    exam_sessions_id: form.exam_sessions_id,
+                    //exam_sessions_id: form.exam_sessions_id,
                     password: form.password,
                     password_confirmation: form.password_confirmation,
                 },

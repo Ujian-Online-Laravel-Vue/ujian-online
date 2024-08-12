@@ -38,6 +38,7 @@
                                         <th class="border-0">Ujian</th>
                                         <th class="border-0">Sesi</th>
                                         <th class="border-0">Siswa</th>
+                                        <th class="border-0">Pengawas</th>
                                         <th class="border-0">Mulai</th>
                                         <th class="border-0">Selesai</th>
                                         <th class="border-0 rounded-end" style="width:15%">Aksi</th>
@@ -57,6 +58,7 @@
                                         </td>
                                         <td>{{ exam_session.title }}</td>
                                         <td class="text-center">{{ exam_session.exam_groups.length }}</td>
+                                        <td>{{ exam_session.pengawas ? exam_session.pengawas.name : 'Tidak ada pengawas' }}</td>
                                         <td>{{ exam_session.start_time }}</td>
                                         <td>{{ exam_session.end_time }}</td>
                                         <td v-if="$page.props.auth.roles['admin']" class="text-center">
