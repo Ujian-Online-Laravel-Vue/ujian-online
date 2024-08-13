@@ -19,6 +19,7 @@ class ExamSession extends Model
         'title',
         'start_time',
         'end_time',
+        'pengawas_id'
     ];
 
     /**
@@ -48,6 +49,6 @@ class ExamSession extends Model
 
     public function pengawas()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'pengawas_id');
     }
 }
