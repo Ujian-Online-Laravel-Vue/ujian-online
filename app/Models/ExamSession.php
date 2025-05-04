@@ -19,6 +19,7 @@ class ExamSession extends Model
         'title',
         'start_time',
         'end_time',
+        'pengawas_id'
     ];
 
     /**
@@ -31,6 +32,10 @@ class ExamSession extends Model
         return $this->hasMany(ExamGroup::class);
     }
 
+    public function students(){
+       return $this->hasMany(Student::class,'exam_groups','exam_session_id','student_id');
+    }
+
     /**
      * exam
      *
@@ -39,5 +44,11 @@ class ExamSession extends Model
     public function exam()
     {
         return $this->belongsTo(Exam::class);
+    }
+
+
+    public function pengawas()
+    {
+        return $this->belongsTo(User::class, 'pengawas_id');
     }
 }

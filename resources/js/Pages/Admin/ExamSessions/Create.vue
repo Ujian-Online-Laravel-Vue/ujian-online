@@ -38,6 +38,31 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12">
+                                    <div class="mb-4">
+                                        <label>Pengawas</label>
+                                        <select
+                                            class="form-select"
+                                            v-model="form.pengawas_id"
+                                        >
+                                            <option
+                                                v-for="(
+                                                    pengawas, index
+                                                ) in pengawas"
+                                                :key="index"
+                                                :value="pengawas.id"
+                                            >
+                                                {{ pengawas.name }}
+                                            </option>
+                                        </select>
+                                        <div
+                                            v-if="errors.pengawas_id"
+                                            class="alert alert-danger mt-2"
+                                        >
+                                            {{ errors.pengawas_id }}
+                                        </div>
+                                    </div>
+                                </div>
 
                             <div class="row">
                                 <div class="col-md-6">
@@ -114,6 +139,7 @@
         props: {
             errors: Object,
             exams: Array,
+            pengawas: Array,
         },
 
         //inisialisasi composition API
@@ -125,6 +151,7 @@
                 exam_id: '',
                 start_time: '',
                 end_time: '',
+                pengawas_id: '',
             });
 
             //method "submit"
@@ -137,6 +164,7 @@
                     exam_id: form.exam_id,
                     start_time: form.start_time,
                     end_time: form.end_time,
+                    pengawas_id: form.pengawas_id,
                 }, {
                     onSuccess: () => {
                         //show success alert

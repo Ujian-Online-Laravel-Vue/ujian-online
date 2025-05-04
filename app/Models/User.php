@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,28 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'school_id'
     ];
+
+    /**
+     * school
+     *
+     * @return void
+     */
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    /**
+     * school
+     *
+     * @return void
+     */
+    public function exam_sessions()
+    {
+        return $this->hasMany(ExamSession::class, 'pengawas_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +66,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function examSessions(){
+        return $this->hasMany(ExamSession::class, 'pengawas_id', 'id');
+    }
 }

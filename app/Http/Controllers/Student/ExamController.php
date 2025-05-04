@@ -52,6 +52,10 @@ class ExamController extends Controller
                     ->where('student_id', auth()->guard('student')->user()->id)
                     ->where('id', $id)
                     ->first();
+        
+        // update exam group status
+        $exam_group->status = 'ON_PROGRESS';
+        $exam_group->save();
 
         //get grade / nilai
         $grade = Grade::where('exam_id', $exam_group->exam->id)
@@ -297,6 +301,12 @@ class ExamController extends Controller
         $grade->total_correct   = $count_correct_answer;
         $grade->grade           = $grade_exam;
         $grade->update();
+
+        // update exam groups status
+        $exam_group = ExamGroup::findOrFail($request->exam_group_id);
+        $exam_group->update([
+            'status'   => 'FINISH'
+        ]);
 
         //redirect hasil
         return redirect()->route('student.exams.resultExam', $request->exam_group_id);

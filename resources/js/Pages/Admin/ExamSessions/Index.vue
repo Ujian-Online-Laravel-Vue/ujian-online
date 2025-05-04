@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
-                    <div class="col-md-3 col-12 mb-2">
+                    <div v-if="$page.props.auth.roles['admin']" class="col-md-3 col-12 mb-2">
                         <Link href="/admin/exam_sessions/create" class="btn btn-md btn-primary border-0 shadow w-100" type="button"><i
                             class="fa fa-plus-circle"></i>
                         Tambah</Link>
@@ -38,6 +38,7 @@
                                         <th class="border-0">Ujian</th>
                                         <th class="border-0">Sesi</th>
                                         <th class="border-0">Siswa</th>
+                                        <th class="border-0">Pengawas</th>
                                         <th class="border-0">Mulai</th>
                                         <th class="border-0">Selesai</th>
                                         <th class="border-0 rounded-end" style="width:15%">Aksi</th>
@@ -57,12 +58,16 @@
                                         </td>
                                         <td>{{ exam_session.title }}</td>
                                         <td class="text-center">{{ exam_session.exam_groups.length }}</td>
+                                        <td>{{ exam_session.pengawas ? exam_session.pengawas.name : 'Tidak ada pengawas' }}</td>
                                         <td>{{ exam_session.start_time }}</td>
                                         <td>{{ exam_session.end_time }}</td>
-                                        <td class="text-center">
+                                        <td v-if="$page.props.auth.roles['admin']" class="text-center">
                                             <Link :href="`/admin/exam_sessions/${exam_session.id}`" class="btn btn-sm btn-primary border-0 shadow me-2" type="button"><i class="fa fa-plus-circle"></i></Link>
                                             <Link :href="`/admin/exam_sessions/${exam_session.id}/edit`" class="btn btn-sm btn-info border-0 shadow me-2" type="button"><i class="fa fa-pencil-alt"></i></Link>
                                             <button @click.prevent="destroy(exam_session.id)" class="btn btn-sm btn-danger border-0"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                        <td v-if="$page.props.auth.roles['pengawas']">
+                                            <Link :href="`/admin/exam_sessions/${exam_session.id}`" class="btn btn-sm btn-primary border-0 shadow me-2" type="button"><i class="fa fa-eye"></i></Link>
                                         </td>
                                     </tr>
                                 </tbody>

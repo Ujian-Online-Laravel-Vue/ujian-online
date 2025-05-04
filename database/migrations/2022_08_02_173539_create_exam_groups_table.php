@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('exam_id')->references('id')->on('exams')->cascadeOnDelete();
             $table->foreignId('exam_session_id')->references('id')->on('exam_sessions')->cascadeOnDelete();
             $table->foreignId('student_id')->references('id')->on('students')->cascadeOnDelete();
+            $table->enum("status", ["NOT_START", "ON_PROGRESS", "FINISH"])->default('NOT_START');
             $table->timestamps();
         });
     }
