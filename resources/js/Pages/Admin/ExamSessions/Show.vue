@@ -146,7 +146,12 @@
                                         <td class="text-center">
                                             {{ data.student.gender }}
                                         </td>
-                                        <td class="text-center">
+                                        <td
+                                            v-if="
+                                                $page.props.auth.roles['admin']
+                                            "
+                                            class="text-center"
+                                        >
                                             <button
                                                 @click.prevent="
                                                     destroy(
@@ -158,6 +163,15 @@
                                             >
                                                 <i class="fa fa-trash"></i>
                                             </button>
+                                        </td>
+                                        <td
+                                            v-if="
+                                                $page.props.auth.roles[
+                                                    'pengawas'
+                                                ]
+                                            "
+                                        >
+                                            {{ data.status }}
                                         </td>
                                     </tr>
                                 </tbody>

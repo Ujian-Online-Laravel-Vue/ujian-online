@@ -140,7 +140,7 @@ class PengawasController extends Controller
         $request->validate([
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users,email,' . $id,
-            'password' => 'string|confirmed',
+            'password' => 'string|confirmed|nullable',
             'school_id' => 'nullable'
         ]);
 

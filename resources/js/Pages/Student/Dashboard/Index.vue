@@ -1,4 +1,4 @@
-.<template>
+<template>
     <Head>
         <title>Dashboard Siswa - Aplikasi Ujian Online</title>
     </Head>
@@ -114,8 +114,11 @@
         props: {
             exam_groups: Array,
             auth: Object
-        }
+        },
 
+        // setup(props) {
+        //     console.log(props)
+        // }
     }
 
 </script>
