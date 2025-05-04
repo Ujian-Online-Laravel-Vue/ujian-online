@@ -18,6 +18,7 @@ class ExamGroup extends Model
         'exam_id',
         'exam_session_id',
         'student_id',
+        'status'
     ];
 
     /**

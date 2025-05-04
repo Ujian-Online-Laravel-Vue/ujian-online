@@ -7,14 +7,22 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-3 col-12 mb-2">
-                        <Link href="/admin/pengawas/create" class="btn btn-md btn-primary border-0 shadow w-100" type="button"><i
-                            class="fa fa-plus-circle"></i>
-                        Tambah</Link>
+                        <Link
+                            href="/admin/pengawas/create"
+                            class="btn btn-md btn-primary border-0 shadow w-100"
+                            type="button"
+                            ><i class="fa fa-plus-circle"></i> Tambah</Link
+                        >
                     </div>
                     <div class="col-md-9 col-12 mb-2">
                         <form @submit.prevent="handleSearch">
                             <div class="input-group">
-                                <input type="text" class="form-control border-0 shadow" v-model="search" placeholder="masukkan kata kunci dan enter...">
+                                <input
+                                    type="text"
+                                    class="form-control border-0 shadow"
+                                    v-model="search"
+                                    placeholder="masukkan kata kunci dan enter..."
+                                />
                                 <span class="input-group-text border-0 shadow">
                                     <i class="fa fa-search"></i>
                                 </span>
@@ -73,7 +81,16 @@
                                             {{ user.school?.title }}
                                         </td>
                                         <td>
-                                            {{ user.exam_sessions?.title }}
+                                            <ul>
+                                                <li
+                                                    v-for="(
+                                                        item, index
+                                                    ) in user.exam_sessions"
+                                                    :key="index"
+                                                >
+                                                    {{ item.title }}
+                                                </li>
+                                            </ul>
                                         </td>
                                         <td class="text-center">
                                             <Link

@@ -140,6 +140,20 @@
                     </span>
                     </Link>
                 </li>
+                
+                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/pengawas') }">
+                    <Link href="/admin/pengawas" class="nav-link d-flex justify-content-between">
+                    <span>
+                        <span class="sidebar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                class="bi bi-person-fill icon icon-xs me-2" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                        </span>
+                        <span class="sidebar-text">Pengawas</span>
+                    </span>
+                    </Link>
+                </li>
 
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/exam_sessions') }">
                     <Link href="/admin/exam_sessions" class="nav-link d-flex justify-content-between">
@@ -153,20 +167,6 @@
                             </svg>
                         </span>
                         <span class="sidebar-text">Sesi Ujian</span>
-                    </span>
-                    </Link>
-                </li>
-
-                <li v-if="$page.props.auth.roles['admin']" class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/pengawas') }">
-                    <Link href="/admin/pengawas" class="nav-link d-flex justify-content-between">
-                    <span>
-                        <span class="sidebar-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-person-fill icon icon-xs me-2" viewBox="0 0 16 16">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                            </svg>
-                        </span>
-                        <span class="sidebar-text">Pengawas</span>
                     </span>
                     </Link>
                 </li>

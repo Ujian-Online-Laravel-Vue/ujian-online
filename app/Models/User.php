@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function exam_sessions()
     {
-        return $this->belongsTo(ExamSession::class);
+        return $this->hasMany(ExamSession::class, 'pengawas_id');
     }
 
     /**
